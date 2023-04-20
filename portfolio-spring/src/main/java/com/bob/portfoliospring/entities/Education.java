@@ -2,6 +2,7 @@ package com.bob.portfoliospring.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
 import javax.persistence.*;

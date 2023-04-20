@@ -13,7 +13,7 @@ public class ProfessionalAffiliationService {
     @Autowired
     private ProfessionalAffiliationRepository professionalAffiliationRepository;
 
-    public List<ProfessionalAffiliation> getAllProfessionalAffiliation() {
+    public List<ProfessionalAffiliation> getAllProfessionalAffiliations() {
         return professionalAffiliationRepository.findAll();
     }
 

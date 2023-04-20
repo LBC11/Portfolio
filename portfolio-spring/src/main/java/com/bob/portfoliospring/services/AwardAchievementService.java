@@ -25,7 +25,7 @@ public class AwardAchievementService {
         return awardAchievementRepository.save(awardAchievement);
     }
 
-    public void deleteAwardAchievementById(Long id) {
+    public void deleteAwardAchievement(Long id) {
         awardAchievementRepository.deleteById(id);
     }
 }

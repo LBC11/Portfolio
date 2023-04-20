@@ -25,7 +25,7 @@ public class SkillService {
         return skillRepository.save(skill);
     }
 
-    public void deleteSkillById(Long id) {
+    public void deleteSkill(Long id) {
         skillRepository.deleteById(id);
     }
 }

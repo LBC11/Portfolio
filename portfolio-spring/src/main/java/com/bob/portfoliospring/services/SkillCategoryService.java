@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SkillsCategoryService {
+public class SkillCategoryService {
 
     @Autowired
     private SkillCategoryRepository skillCategoryRepository;
@@ -25,7 +25,7 @@ public class SkillsCategoryService {
         return skillCategoryRepository.save(skillCategory);
     }
 
-    public void deleteCategoryById(Long id) {
+    public void deleteSkillCategory(Long id) {
         skillCategoryRepository.deleteById(id);
     }
 }
