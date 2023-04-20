@@ -1,4 +1,4 @@
-package com.bob.portfoliospring.domain.entities;
+package com.bob.portfoliospring.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor
-@Table(name = "skills")
-public class Skill {
+@Table(name = "certifications")
+public class Certification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,6 @@ public class Skill {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "skill_category_id")
-    private SkillCategory skillCategory;
+    @JoinColumn(name = "personal_information_id")
+    private PersonalInformation personalInformation;
 }

@@ -1,4 +1,4 @@
-package com.bob.portfoliospring.domain.entities;
+package com.bob.portfoliospring.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,15 +9,17 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @NoArgsConstructor
-@Table(name = "awards_achievements")
-public class AwardAchievement {
+@Table(name = "professional_affiliations")
+public class ProfessionalAffiliation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String organization;
     private String description;
-    private LocalDate date_received;
+    private LocalDate start_date;
+    private LocalDate end_date;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "personal_information_id")

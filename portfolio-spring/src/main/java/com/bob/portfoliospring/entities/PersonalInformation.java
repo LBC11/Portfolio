@@ -1,4 +1,4 @@
-package com.bob.portfoliospring.domain.entities;
+package com.bob.portfoliospring.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

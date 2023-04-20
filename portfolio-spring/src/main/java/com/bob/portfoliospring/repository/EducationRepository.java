@@ -1,6 +1,6 @@
-package com.bob.portfoliospring.domain.repository;
+package com.bob.portfoliospring.repository;
 
-import com.bob.portfoliospring.domain.entities.Education;
+import com.bob.portfoliospring.entities.Education;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
