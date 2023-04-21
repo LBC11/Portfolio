@@ -22,8 +22,8 @@ public class ProjectDTO {
         dto.setId(project.getId());
         dto.setName(project.getName());
         dto.setDescription(project.getDescription());
-        dto.setStartDate(project.getStart_date());
-        dto.setEndDate(project.getEnd_date());
+        dto.setStartDate(project.getStartDate());
+        dto.setEndDate(project.getEndDate());
         dto.setTechnologies(project.getTechnologies());
         dto.setPersonalInformationId(project.getPersonalInformation().getId());
 

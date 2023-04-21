@@ -22,7 +22,7 @@ public class AwardAchievementDTO {
         dto.setId(awardAchievement.getId());
         dto.setName(awardAchievement.getName());
         dto.setDescription(awardAchievement.getDescription());
-        dto.setDateReceived(awardAchievement.getDate_received());
+        dto.setDateReceived(awardAchievement.getDateReceived());
 
         // PersonalInformation 객체 대신에 personalInformationId를 설정합니다.
         dto.setPersonalInformationId(awardAchievement.getPersonalInformation().getId());

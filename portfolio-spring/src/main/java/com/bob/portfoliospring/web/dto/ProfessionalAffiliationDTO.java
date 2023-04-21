@@ -24,8 +24,8 @@ public class ProfessionalAffiliationDTO {
         dto.setName(professionalAffiliation.getName());
         dto.setOrganization(professionalAffiliation.getOrganization());
         dto.setDescription(professionalAffiliation.getDescription());
-        dto.setStartDate(professionalAffiliation.getStart_date());
-        dto.setEndDate(professionalAffiliation.getEnd_date());
+        dto.setStartDate(professionalAffiliation.getStartDate());
+        dto.setEndDate(professionalAffiliation.getEndDate());
         dto.setPersonalInformationId(professionalAffiliation.getPersonalInformation().getId());
 
         return dto;

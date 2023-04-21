@@ -19,7 +19,7 @@ public class AwardAchievement {
     private Long id;
     private String name;
     private String description;
-    private Date date_received;
+    private Date dateReceived;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "personal_information_id")

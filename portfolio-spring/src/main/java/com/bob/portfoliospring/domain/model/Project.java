@@ -20,8 +20,8 @@ public class Project {
     private Long id;
     private String name;
     private String description;
-    private Date start_date;
-    private Date end_date;
+    private Date startDate;
+    private Date endDate;
     private String technologies;
 
     @ManyToOne(fetch = FetchType.LAZY)

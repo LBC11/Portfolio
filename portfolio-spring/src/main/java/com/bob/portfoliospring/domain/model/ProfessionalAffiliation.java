@@ -20,8 +20,8 @@ public class ProfessionalAffiliation {
     private String name;
     private String organization;
     private String description;
-    private Date start_date;
-    private Date end_date;
+    private Date startDate;
+    private Date endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "personal_information_id")
