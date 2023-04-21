@@ -33,6 +33,9 @@ public class PersonalInformation {
     private List<Education> educations;
 
     @OneToMany(mappedBy = "personalInformation", cascade = CascadeType.ALL)
+    private List<SemesterGrade> semesterGrades;
+
+    @OneToMany(mappedBy = "personalInformation", cascade = CascadeType.ALL)
     private List<ProfessionalAffiliation> professionalAffiliations;
 
     @OneToMany(mappedBy = "personalInformation", cascade = CascadeType.ALL)

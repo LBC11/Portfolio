@@ -19,7 +19,7 @@ public class SemesterGrade {
     private int semester;
     private double gpa;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "personal_information_id")
     private PersonalInformation personalInformation;
 
