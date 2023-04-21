@@ -4,7 +4,7 @@ import com.bob.portfoliospring.domain.model.Project;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -12,8 +12,8 @@ public class ProjectDTO {
     private Long id;
     private String name;
     private String description;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Date startDate;
+    private Date endDate;
     private String technologies;
     private Long personalInformationId;
 

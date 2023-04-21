@@ -4,7 +4,7 @@ import com.bob.portfoliospring.domain.model.AwardAchievement;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -12,7 +12,7 @@ public class AwardAchievementDTO {
     private Long id;
     private String name;
     private String description;
-    private LocalDate dateReceived;
+    private Date dateReceived;
 
     // personalInformationId 필드는 AwardAchievement 엔티티에 있는 PersonalInformation 참조 대신 사용됩니다.
     private Long personalInformationId;

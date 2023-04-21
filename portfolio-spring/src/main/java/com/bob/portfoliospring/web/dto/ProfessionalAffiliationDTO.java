@@ -4,7 +4,8 @@ import com.bob.portfoliospring.domain.model.ProfessionalAffiliation;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.util.Date;
+
 
 @Getter
 @Setter
@@ -13,8 +14,8 @@ public class ProfessionalAffiliationDTO {
     private String name;
     private String organization;
     private String description;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Date startDate;
+    private Date endDate;
     private Long personalInformationId;
 
     public static ProfessionalAffiliationDTO fromEntity(ProfessionalAffiliation professionalAffiliation) {

@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -19,7 +19,7 @@ public class AwardAchievement {
     private Long id;
     private String name;
     private String description;
-    private LocalDate date_received;
+    private Date date_received;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "personal_information_id")
