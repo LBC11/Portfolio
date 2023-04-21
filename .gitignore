@@ -24,7 +24,6 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-.idea
 *.iws
 *.iml
 *.ipr
@@ -41,3 +40,25 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# React
+
+# dependencies
+/node_modules
+
+# build artifacts
+/build
+
+# logs
+*.log
+
+# runtime data
+.env
+
+# IDE files
+*.suo
+*.sln
+*.csproj
+*.user
+*.userosscache
+.vscode
