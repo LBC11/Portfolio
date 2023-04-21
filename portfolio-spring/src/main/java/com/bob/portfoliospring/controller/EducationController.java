@@ -25,8 +25,8 @@ public class EducationController {
     }
 
     @PostMapping("/")
-    public Education saveOrUpdateEducation(@RequestBody Education education) {
-        return educationService.saveOrUpdateEducation(education);
+    public Education saveOrUpdateEducation(@RequestParam Long personalInformationId, @RequestBody Education education) {
+        return educationService.saveEducationWithPersonalInformation(personalInformationId, education);
     }
 
     @DeleteMapping("/{id}")

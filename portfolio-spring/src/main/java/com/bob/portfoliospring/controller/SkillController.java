@@ -25,8 +25,8 @@ public class SkillController {
     }
 
     @PostMapping("/")
-    public Skill saveOrUpdateSkill(@RequestBody Skill skill) {
-        return skillService.saveOrUpdateSkill(skill);
+    public Skill saveOrUpdateSkill(@RequestParam Long skillCategoryId, @RequestBody Skill skill) {
+        return skillService.saveSkillWithSkillCategory(skillCategoryId, skill);
     }
 
     @DeleteMapping("/{id}")

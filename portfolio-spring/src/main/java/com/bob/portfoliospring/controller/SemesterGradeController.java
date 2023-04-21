@@ -12,25 +12,25 @@ import java.util.List;
 public class SemesterGradeController {
 
     @Autowired
-    private SemesterGradeService SemesterGradeService;
+    private SemesterGradeService semesterGradeService;
 
     @GetMapping("/")
     public List<SemesterGrade> getAllSemesterGrades() {
-        return SemesterGradeService.getAllSemesterGrades();
+        return semesterGradeService.getAllSemesterGrades();
     }
 
     @GetMapping("/{id}")
     public SemesterGrade getSemesterGradeById(@PathVariable Long id) {
-        return SemesterGradeService.getSemesterGradeById(id);
+        return semesterGradeService.getSemesterGradeById(id);
     }
 
     @PostMapping("/")
-    public SemesterGrade saveOrUpdateSemesterGrade(@RequestBody SemesterGrade SemesterGrade) {
-        return SemesterGradeService.saveOrUpdateSemesterGrade(SemesterGrade);
+    public SemesterGrade saveOrUpdateSemesterGrade(@RequestParam Long personalInformationId, @RequestBody SemesterGrade semesterGrade) {
+        return semesterGradeService.saveSemesterGradeWithPersonalInformation(personalInformationId, semesterGrade);
     }
 
     @DeleteMapping("/{id}")
     public void deleteSemesterGrade(@PathVariable Long id) {
-        SemesterGradeService.deleteSemesterGrade(id);
+        semesterGradeService.deleteSemesterGrade(id);
     }
 }

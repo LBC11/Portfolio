@@ -25,8 +25,8 @@ public class ProjectController {
     }
 
     @PostMapping("/")
-    public Project saveOrUpdateProject(@RequestBody Project project) {
-        return projectService.saveOrUpdateProject(project);
+    public Project saveOrUpdateProject(@RequestParam Long personalInformationId, @RequestBody Project project) {
+        return projectService.saveProjectWithPersonalInformation(personalInformationId, project);
     }
 
     @DeleteMapping("/{id}")

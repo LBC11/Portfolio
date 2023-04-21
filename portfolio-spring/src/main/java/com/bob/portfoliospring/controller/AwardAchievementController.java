@@ -25,8 +25,8 @@ public class AwardAchievementController {
     }
 
     @PostMapping("/")
-    public AwardAchievement saveOrUpdateAwardAchievement(@RequestBody AwardAchievement awardAchievement) {
-        return awardAchievementService.saveOrUpdateAwardAchievement(awardAchievement);
+    public AwardAchievement saveOrUpdateAwardAchievement(@RequestParam Long personalInformationId, @RequestBody AwardAchievement awardAchievement) {
+        return awardAchievementService.saveAwardAchievementWithPersonalInformation(personalInformationId, awardAchievement);
     }
 
     @DeleteMapping("/{id}")

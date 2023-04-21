@@ -25,8 +25,8 @@ public class CertificationController {
     }
 
     @PostMapping("/")
-    public Certification saveOrUpdateCertification(@RequestBody Certification certification) {
-        return certificationService.saveOrUpdateCertification(certification);
+    public Certification saveOrUpdateCertification(@RequestParam Long personalInformationId, @RequestBody Certification certification) {
+        return certificationService.saveCertificationWithPersonalInformation(personalInformationId, certification);
     }
 
     @DeleteMapping("/{id}")

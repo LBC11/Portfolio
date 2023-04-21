@@ -2,12 +2,14 @@ package com.bob.portfoliospring.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @Table(name = "professional_affiliations")
 public class ProfessionalAffiliation {

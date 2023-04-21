@@ -25,8 +25,8 @@ public class ProfessionalAffiliationController {
     }
 
     @PostMapping("/")
-    public ProfessionalAffiliation saveOrUpdateProfessionalAffiliation(@RequestBody ProfessionalAffiliation professionalAffiliation) {
-        return professionalAffiliationService.saveOrUpdateProfessionalAffiliation(professionalAffiliation);
+    public ProfessionalAffiliation saveOrUpdateProfessionalAffiliation(@RequestParam Long personalInformationId, @RequestBody ProfessionalAffiliation professionalAffiliation) {
+        return professionalAffiliationService.saveProfessionalAffiliationWithPersonalInformation(personalInformationId, professionalAffiliation);
     }
 
     @DeleteMapping("/{id}")
