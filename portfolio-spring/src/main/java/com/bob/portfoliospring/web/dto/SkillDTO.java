@@ -11,8 +11,6 @@ public class SkillDTO {
     private String name;
     private Long skillCategoryId;
 
-    // Getter, Setter, 기타 메소드 생략...
-
     public static SkillDTO fromEntity(Skill skill) {
         SkillDTO dto = new SkillDTO();
         dto.setId(skill.getId());

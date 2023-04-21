@@ -4,8 +4,10 @@ import com.bob.portfoliospring.domain.model.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Getter
@@ -46,25 +48,53 @@ public class PersonalInformationDTO {
         dto.setLanguage(personalInformation.getLanguage());
 
         // 연관된 객체들도 DTO 로 변환하는 코드를 추가합니다.
-        dto.setEducations(personalInformation.getEducations().stream()
+        // null 일경우 빈 List 를 반환합니다.
+        List<EducationDTO> educations = Optional.ofNullable(personalInformation.getEducations())
+                .orElse(Collections.emptyList())
+                .stream()
                 .map(EducationDTO::fromEntity)
-                .collect(Collectors.toList()));
-        dto.setSemesterGrades(personalInformation.getSemesterGrades().stream()
+                .collect(Collectors.toList());
+        dto.setEducations(educations);
+
+        List<SemesterGradeDTO> semesterGrades = Optional.ofNullable(personalInformation.getSemesterGrades())
+                .orElse(Collections.emptyList())
+                .stream()
                 .map(SemesterGradeDTO::fromEntity)
-                .collect(Collectors.toList()));
-        dto.setProfessionalAffiliations(personalInformation.getProfessionalAffiliations().stream()
+                .collect(Collectors.toList());
+        dto.setSemesterGrades(semesterGrades);
+
+        List<ProfessionalAffiliationDTO> professionalAffiliations = Optional.ofNullable(personalInformation.getProfessionalAffiliations())
+                .orElse(Collections.emptyList())
+                .stream()
                 .map(ProfessionalAffiliationDTO::fromEntity)
-                .collect(Collectors.toList()));
-        dto.setProjects(personalInformation.getProjects().stream()
+                .collect(Collectors.toList());
+        dto.setProfessionalAffiliations(professionalAffiliations);
+
+        List<ProjectDTO> projects = Optional.ofNullable(personalInformation.getProjects())
+                .orElse(Collections.emptyList())
+                .stream()
                 .map(ProjectDTO::fromEntity)
-                .collect(Collectors.toList()));
-        dto.setSkillsAndTechniques(SkillsAndTechniquesDTO.fromEntity(personalInformation.getSkillsAndTechniques()));
-        dto.setAwardsAchievements(personalInformation.getAwardsAchievements().stream()
+                .collect(Collectors.toList());
+        dto.setProjects(projects);
+
+        SkillsAndTechniquesDTO skillsAndTechniques = Optional.ofNullable(personalInformation.getSkillsAndTechniques())
+                .map(SkillsAndTechniquesDTO::fromEntity)
+                .orElse(null);
+        dto.setSkillsAndTechniques(skillsAndTechniques);
+
+        List<AwardAchievementDTO> awardsAchievements = Optional.ofNullable(personalInformation.getAwardsAchievements())
+                .orElse(Collections.emptyList())
+                .stream()
                 .map(AwardAchievementDTO::fromEntity)
-                .collect(Collectors.toList()));
-        dto.setCertifications(personalInformation.getCertifications().stream()
+                .collect(Collectors.toList());
+        dto.setAwardsAchievements(awardsAchievements);
+
+        List<CertificationDTO> certifications = Optional.ofNullable(personalInformation.getCertifications())
+                .orElse(Collections.emptyList())
+                .stream()
                 .map(CertificationDTO::fromEntity)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
+        dto.setCertifications(certifications);
 
         return dto;
     }

@@ -4,6 +4,8 @@ import com.bob.portfoliospring.domain.model.SkillsAndTechniques;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Collections;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,9 +20,13 @@ public class SkillsAndTechniquesDTO {
         SkillsAndTechniquesDTO dto = new SkillsAndTechniquesDTO();
         dto.setId(skillsAndTechniques.getId());
         dto.setPersonalInformationId(skillsAndTechniques.getPersonalInformation().getId());
-        dto.setSkillCategories(skillsAndTechniques.getSkillCategories().stream()
+
+        Set<SkillCategoryDTO> skillCategories = Optional.ofNullable(skillsAndTechniques.getSkillCategories())
+                .orElse(Collections.emptySet())
+                .stream()
                 .map(SkillCategoryDTO::fromEntity)
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toSet());
+        dto.setSkillCategories(skillCategories);
 
         return dto;
     }
