@@ -3,6 +3,7 @@ import axiosInstance from './axiosInstance';
 import './App.css';
 
 function App() {
+  // State for selected section and personal data
   const [selectedSection, setSelectedSection] = useState('Personal Data');
   const [personalData, setPersonalData] = useState({
     educations: [],
@@ -13,6 +14,7 @@ function App() {
     certifications: []
   });
 
+  // Fetch personal data on component mount
   useEffect(() => {
     axiosInstance.get('/api/personal-information/1')
       .then((response) => {
@@ -23,95 +25,129 @@ function App() {
       });
   }, []);
 
+  // Handle section button clicks
   const handleClick = (section) => {
     setSelectedSection(section);
   };
 
+  // Render the content of the selected section
   const renderSection = () => {
+    // Show loading message if data is not yet available
     if (!personalData || Object.keys(personalData).length === 0) {
       return <p>Loading data...</p>;
     }
 
+    // Render content based on selected section
     switch (selectedSection) {
       case 'Personal Data':
-        if (!personalData.name) {
-          return <p>Loading data...</p>;
-        }
         return (
-          <p>
-            Born in {personalData.location} in {new Date(personalData.birth).getFullYear()}, {personalData.name}, is a passionate {personalData.degree} student at {personalData.university}. Fluent in {personalData.language}, {personalData.name.split(' ')[0]} is dedicated to furthering their skills in the IT field.
-          </p>
+          <div style={{ textAlign: 'left' }}>
+            <p><strong>{personalData.name}</strong></p>
+            <ul>
+              <li>Birth: {new Date(personalData.birth).getFullYear()}.{("0" + (new Date(personalData.birth).getMonth() + 1)).slice(-2)}.{("0" + (new Date(personalData.birth).getDate())).slice(-2)}, in {personalData.location}</li>
+              <li>Nationality: {personalData.nationality}</li>
+              <li>Language: First language {personalData.language.split(',')[0]}, proficient in reading and writing in {personalData.language.split(',')[1].trim()}</li>
+            </ul>
+          </div>
         );
       case 'Education':
         return (
-          <ul>
-            {personalData.educations.map((education) => (
-              <li key={education.id}>
-                {education.institution}, {education.degree} {new Date(education.startDate).getFullYear()}-{("0" + (new Date(education.startDate).getMonth() + 1)).slice(-2)} ~ <br />
-                Description: {education.descriptions.join(', ')}
-              </li>
+          <div style={{ textAlign: 'left' }}>
+            {personalData.educations.map((education, index) => (
+              <div key={education.id} style={{ marginBottom: index < personalData.educations.length - 1 ? '1rem' : '0' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <h3>{education.institution}</h3>
+                  <h4 style={{ fontWeight: 'normal', marginLeft: '1rem' }}>
+                    {new Date(education.startDate).toLocaleDateString()} ~{' '}
+                    {education.endDate ? new Date(education.endDate).toLocaleDateString() : 'Present'}
+                  </h4>
+                </div>
+                <p style={{ fontStyle: 'italic' }}>{education.degree} {education.major}</p>
+                {education.descriptions.map((description, i) => (
+                  <p key={i} style={{ marginTop: i === 0 ? 0 : '0.5rem', marginBottom: '0.5rem' }}>- {description}</p>
+                ))}
+                {index < personalData.educations.length - 1 && <hr />}
+              </div>
             ))}
-          </ul>
+          </div>
         );
       case 'Professional Affiliation':
         return (
-          <ul>
-            {personalData.professionalAffiliations.map((affiliation) => (
-              <li key={affiliation.id}>
-                {affiliation.name} ({affiliation.organization})<br />
-                Description: {affiliation.descriptions.join(', ')}<br />
-                Dates: {new Date(affiliation.startDate).getFullYear()}-{("0" + (new Date(affiliation.startDate).getMonth() + 1)).slice(-2)} ~ {new Date(affiliation.endDate).getFullYear()}-{("0" + (new Date(affiliation.endDate).getMonth() + 1)).slice(-2)}
-              </li>
+          <div style={{ textAlign: 'left' }}>
+            {personalData.professionalAffiliations.map((affiliation, index) => (
+              <div key={affiliation.id} style={{ marginBottom: index < personalData.professionalAffiliations.length - 1 ? '1rem' : '0' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <h3>{affiliation.name}</h3>
+                  <h4 style={{ fontWeight: 'normal', marginLeft: '1rem' }}>
+                    {new Date(affiliation.startDate).getFullYear()}-{("0" + (new Date(affiliation.startDate).getMonth() + 1)).slice(-2)}  ~{' '}
+                    {new Date(affiliation.endDate).getFullYear()}-{("0" + (new Date(affiliation.endDate).getMonth() + 1)).slice(-2)}
+                  </h4>
+                </div>
+                <p style={{ fontStyle: 'italic' }}>{affiliation.organization}</p>
+                {affiliation.descriptions.map((description, i) => (
+                  <p key={i} style={{ marginTop: i === 0 ? 0 : '0.5rem', marginBottom: '0.5rem' }}>- {description}</p>
+                ))}
+                {index < personalData.professionalAffiliations.length - 1 && <hr />}
+              </div>
             ))}
-          </ul>
+          </div>
         );
       case 'Projects':
         return (
-          <ul>
-            {personalData.projects.map((project) => (
-              <li key={project.id}>
-                {project.name} - {project.descriptions.join(', ')}<br />
-                Date: {new Date(project.startDate).getFullYear()}-{("0" + (new Date(project.startDate).getMonth() + 1)).slice(-2)} ~ {new Date(project.endDate).getFullYear()}-{("0" + (new Date(project.endDate).getMonth() + 1)).slice(-2)}
-              </li>
+          <div style={{ textAlign: 'left' }}>
+            {personalData.projects.map((project, index) => (
+              <div key={project.id} style={{ marginBottom: index < personalData.projects.length - 1 ? '1rem' : '0' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <h3>{project.name}</h3>
+                  <h4 style={{ fontWeight: 'normal', marginLeft: '1rem' }}>
+                    {new Date(project.startDate).getFullYear()}-{("0" + (new Date(project.startDate).getMonth() + 1)).slice(-2)}  ~{' '}
+                    {new Date(project.endDate).getFullYear()}-{("0" + (new Date(project.endDate).getMonth() + 1)).slice(-2)}
+                  </h4>
+                </div>
+                {project.descriptions.map((description, i) => (
+                  <p key={i} style={{ marginTop: i === 0 ? 0 : '0.5rem', marginBottom: '0.5rem' }}>- {description}</p>
+                ))}
+                {index < personalData.projects.length - 1 && <hr />}
+              </div>
             ))}
-          </ul>
+          </div>
         );
       case 'Skills and Techniques':
         return (
-          <div>
-            {personalData.skillsAndTechniques.skillCategories.map((category) => (
-              <div key={category.id}>
-                <h3>{category.name}</h3>
-                <ul>
-                  {category.skills.map((skill) => (
-                    <li key={skill.id}>{skill.name}</li>
-                  ))}
-                </ul>
+          <div style={{ textAlign: 'left' }}>
+            {personalData.skillsAndTechniques.skillCategories.map((category, index) => (
+              <div key={category.id} style={{ marginBottom: index < personalData.skillsAndTechniques.skillCategories.length - 1 ? '1rem' : '0' }}>
+                <p style={{ marginBottom: '0.5rem' }}><strong>• {category.name}</strong></p>
+                <p style={{ marginLeft: '1rem' }}>| {category.skills.map((skill) => skill.name).join(' | ')} |</p>
               </div>
             ))}
           </div>
         );
       case 'Awards & Achievements':
         return (
-          <ul>
-            {personalData.awardsAchievements.map((award) => (
-              <li key={award.id}>
-                {award.name} ({award.description})<br />
-                Date Received: {new Date(award.dateReceived).getFullYear()}-{("0" + (new Date(award.dateReceived).getMonth() + 1)).slice(-2)}
-              </li>
+          <div style={{ textAlign: 'left' }}>
+            {personalData.awardsAchievements.map((award, index) => (
+              <div key={award.id} style={{ marginBottom: index < personalData.awardsAchievements.length - 1 ? '1rem' : '0' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ marginRight: '1rem' }}><strong>{award.name}</strong> ({award.description})</span>
+                  <span>{new Date(award.dateReceived).getFullYear()}-{("0" + (new Date(award.dateReceived).getMonth() + 1)).slice(-2)}-{("0" + new Date(award.dateReceived).getDate()).slice(-2)}</span>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         );
       case 'Certifications':
         return (
-          <ul>
-            {personalData.certifications.map((certification) => (
-              <li key={certification.id}>{certification.name}<br />
-              Description: {certification.description}<br />
-              Date: {new Date(certification.dateReceived).getFullYear()}-{("0" + (new Date(certification.dateReceived).getMonth() + 1)).slice(-2)}
-              </li>
+          <div style={{ textAlign: 'left' }}>
+            {personalData.certifications.map((certification, index) => (
+              <div key={certification.id} style={{ marginBottom: index < personalData.certifications.length - 1 ? '1rem' : '0' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ marginRight: '1rem' }}><strong>{certification.name}</strong> - {certification.description}</span>
+                  <span>{new Date(certification.dateReceived).getFullYear()}-{("0" + (new Date(certification.dateReceived).getMonth() + 1)).slice(-2)}</span>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         );
       default:
         return null;
@@ -120,11 +156,17 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <img src={process.env.PUBLIC_URL + '/intel_logo.png'} alt="Intel Logo" style={{ width: '100px', height: 'auto' }} />
         <h1>Byungchan Lee (Bob) - Portfolio</h1>
+        <div style={{ width: '100px' }}></div>
       </header>
+
+      {/* Main content */}
       <main>
         <div className="content">
+
+          {/* Left panel with section buttons */}
           <div className="left-panel">
             {[
               'Personal Data',
@@ -144,22 +186,25 @@ function App() {
               </button>
             ))}
           </div>
+
+          {/* Right panel with section content */}
           <div className="right-panel">
             <section>
-              {/* <h2>{selectedSection}</h2> */}
               {renderSection()}
             </section>
           </div>
         </div>
       </main>
+
+      {/* Footer with contact information */}
       <footer>
         <h3>Contact Me</h3>
         <p>Email: <a href="mailto:18102085@seoultech.ac.kr">18102085@seoultech.ac.kr</a>, <a href="mailto:wpdltm4@gmail.com">wpdltm4@gmail.com</a></p>
-          <p>GitHub: <a href="https://github.com/LBC11" target="_blank" rel="noopener noreferrer">https://github.com/LBC11</a></p>
-          <p>Cell phone: 010-4758-8763</p>
-        </footer>
-      </div>
-    );
+        <p>GitHub: <a href="https://github.com/LBC11" target="_blank" rel="noopener noreferrer">https://github.com/LBC11</a></p>
+        <p>Cell phone: 010-4758-8763</p>
+      </footer>
+    </div>
+  );
 }
 
 export default App;
