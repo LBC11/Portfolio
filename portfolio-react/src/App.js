@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   const [selectedSection, setSelectedSection] = useState('Personal Data');
-  const [personalData, setPersonalData] = useState({});
+  const [personalData, setPersonalData] = useState(null);
 
   useEffect(() => {
     axiosInstance.get('/api/personal-information/1')
@@ -21,55 +21,75 @@ function App() {
   };
 
   const renderSection = () => {
+    if (!personalData || Object.keys(personalData).length === 0) {
+      return <p>Loading data...</p>;
+    }
+
     switch (selectedSection) {
       case 'Personal Data':
         return (
           <p>
-            {personalData.description}
+            Born in {personalData.location} in {new Date(personalData.birth).getFullYear()}, {personalData.name}, is a passionate {personalData.degree} student at {personalData.university}. Fluent in {personalData.language}, {personalData.name.split(' ')[0]} is dedicated to furthering their skills in the IT field.
           </p>
         );
       case 'Education':
         return (
           <ul>
-            <li>Seoul National University of Science and Technology, Bachelor of Information Technology and Management</li>
-            <li>Northumbria University, Information Technology Management for Business BSc(Hons) - Dual Degree</li>
+            {personalData.educations.map((education) => (
+              <li key={education.id}>
+                {education.institution}, {education.degree} {education.major}
+              </li>
+            ))}
           </ul>
         );
       case 'Professional Affiliation':
         return (
-          <p>
-            {/* 여기에 Professional Affiliation 내용을 작성하세요 */}
-          </p>
+          <ul>
+            {personalData.professionalAffiliations.map((affiliation) => (
+              <li key={affiliation.id}>
+                {affiliation.name} ({affiliation.organization})
+              </li>
+            ))}
+          </ul>
         );
       case 'Projects':
         return (
           <ul>
-            <li>User-Location based To-do list Android Application</li>
-            <li>ITM Study Resource Sharing Platform (itmWiki)</li>
-            <li>Twitter Data-based Negativity Bias Verification Web Service</li>
+            {personalData.projects.map((project) => (
+              <li key={project.id}>{project.name}</li>
+            ))}
           </ul>
         );
       case 'SKILLS AND TECHNIQUES':
         return (
-          <ul>
-            <li>Business Analysis/Solution Design Skills</li>
-            <li>Programming Languages/Frameworks</li>
-            <li>Tools</li>
-          </ul>
+          <div>
+            {personalData.skillsAndTechniques.skillCategories.map((category) => (
+              <div key={category.id}>
+                <h3>{category.name}</h3>
+                <ul>
+                  {category.skills.map((skill) => (
+                    <li key={skill.id}>{skill.name}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         );
       case 'AWARDS & ACHIEVEMENTS':
         return (
           <ul>
-            <li>Silver Prize in Finance - Fintech Intellectual Property Online Quiz Competition (Dec. 2022)</li>
-            <li>Encouragement Award - University Coding Competition (Nov. 2022)</li>
-            <li>Silver Prize in Domestic Category - Global Challenger Competition (Oct. 2021)</li>
+            {personalData.awardsAchievements.map((award) => (
+              <li key={award.id}>{award.name} ({award.description})</li>
+            ))}
           </ul>
         );
       case 'Certification':
         return (
-          <p>
-            {/* 여기에 Certification 내용을 작성하세요 */}
-          </p>
+          <ul>
+            {personalData.certifications.map((certification) => (
+              <li key={certification.id}>{certification.name}</li>
+            ))}
+          </ul>
         );
       default:
         return null;
