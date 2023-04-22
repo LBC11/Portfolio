@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,7 +20,12 @@ public class ProfessionalAffiliation {
     private Long id;
     private String name;
     private String organization;
-    private String description;
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "affiliation_descriptions", joinColumns = @JoinColumn(name = "affiliation_id"))
+    @Column(name = "description")
+    private List<String> descriptions;
+
     private Date startDate;
     private Date endDate;
 

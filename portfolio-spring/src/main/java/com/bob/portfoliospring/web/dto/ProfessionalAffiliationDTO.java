@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Getter
@@ -13,7 +14,7 @@ public class ProfessionalAffiliationDTO {
     private Long id;
     private String name;
     private String organization;
-    private String description;
+    private List<String> descriptions;
     private Date startDate;
     private Date endDate;
     private Long personalInformationId;
@@ -23,7 +24,7 @@ public class ProfessionalAffiliationDTO {
         dto.setId(professionalAffiliation.getId());
         dto.setName(professionalAffiliation.getName());
         dto.setOrganization(professionalAffiliation.getOrganization());
-        dto.setDescription(professionalAffiliation.getDescription());
+        dto.setDescriptions(professionalAffiliation.getDescriptions());
         dto.setStartDate(professionalAffiliation.getStartDate());
         dto.setEndDate(professionalAffiliation.getEndDate());
         dto.setPersonalInformationId(professionalAffiliation.getPersonalInformation().getId());

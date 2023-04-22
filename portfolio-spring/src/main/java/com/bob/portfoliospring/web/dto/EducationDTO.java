@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,6 +16,7 @@ public class EducationDTO {
     private String major;
     private Date startDate;
     private Date endDate;
+    private List<String> descriptions;
     private Long personalInformationId;
 
     public static EducationDTO fromEntity(Education education) {
@@ -25,6 +27,7 @@ public class EducationDTO {
         dto.setMajor(education.getMajor());
         dto.setStartDate(education.getStartDate());
         dto.setEndDate(education.getEndDate());
+        dto.setDescriptions(education.getDescriptions());
         dto.setPersonalInformationId(education.getPersonalInformation().getId());
 
         return dto;

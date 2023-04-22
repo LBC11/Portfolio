@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
 public class ProjectDTO {
     private Long id;
     private String name;
-    private String description;
+    private List<String> descriptions;
     private Date startDate;
     private Date endDate;
     private String technologies;
@@ -21,7 +22,7 @@ public class ProjectDTO {
         ProjectDTO dto = new ProjectDTO();
         dto.setId(project.getId());
         dto.setName(project.getName());
-        dto.setDescription(project.getDescription());
+        dto.setDescriptions(project.getDescriptions());
         dto.setStartDate(project.getStartDate());
         dto.setEndDate(project.getEndDate());
         dto.setTechnologies(project.getTechnologies());

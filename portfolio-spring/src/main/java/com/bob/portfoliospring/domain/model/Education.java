@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -24,6 +25,11 @@ public class Education {
     private String major;
     private Date startDate;
     private Date endDate;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "education_descriptions")
+    @Column(name = "description")
+    private List<String> descriptions;
 
     @ManyToOne
     @JoinColumn(name = "personal_information_id")
