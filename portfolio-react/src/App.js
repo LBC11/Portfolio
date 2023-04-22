@@ -4,7 +4,14 @@ import './App.css';
 
 function App() {
   const [selectedSection, setSelectedSection] = useState('Personal Data');
-  const [personalData, setPersonalData] = useState(null);
+  const [personalData, setPersonalData] = useState({
+    educations: [],
+    professionalAffiliations: [],
+    projects: [],
+    skillsAndTechniques: { skillCategories: [] },
+    awardsAchievements: [],
+    certifications: []
+  });
 
   useEffect(() => {
     axiosInstance.get('/api/personal-information/1')
@@ -27,6 +34,9 @@ function App() {
 
     switch (selectedSection) {
       case 'Personal Data':
+        if (!personalData.name) {
+          return <p>Loading data...</p>;
+        }
         return (
           <p>
             Born in {personalData.location} in {new Date(personalData.birth).getFullYear()}, {personalData.name}, is a passionate {personalData.degree} student at {personalData.university}. Fluent in {personalData.language}, {personalData.name.split(' ')[0]} is dedicated to furthering their skills in the IT field.
@@ -37,7 +47,8 @@ function App() {
           <ul>
             {personalData.educations.map((education) => (
               <li key={education.id}>
-                {education.institution}, {education.degree} {education.major}
+                {education.institution}, {education.degree} {new Date(education.startDate).getFullYear()}-{("0" + (new Date(education.startDate).getMonth() + 1)).slice(-2)} ~ <br />
+                Description: {education.descriptions.join(', ')}
               </li>
             ))}
           </ul>
@@ -47,7 +58,9 @@ function App() {
           <ul>
             {personalData.professionalAffiliations.map((affiliation) => (
               <li key={affiliation.id}>
-                {affiliation.name} ({affiliation.organization})
+                {affiliation.name} ({affiliation.organization})<br />
+                Description: {affiliation.descriptions.join(', ')}<br />
+                Dates: {new Date(affiliation.startDate).getFullYear()}-{("0" + (new Date(affiliation.startDate).getMonth() + 1)).slice(-2)} ~ {new Date(affiliation.endDate).getFullYear()}-{("0" + (new Date(affiliation.endDate).getMonth() + 1)).slice(-2)}
               </li>
             ))}
           </ul>
@@ -56,11 +69,14 @@ function App() {
         return (
           <ul>
             {personalData.projects.map((project) => (
-              <li key={project.id}>{project.name}</li>
+              <li key={project.id}>
+                {project.name} - {project.descriptions.join(', ')}<br />
+                Date: {new Date(project.startDate).getFullYear()}-{("0" + (new Date(project.startDate).getMonth() + 1)).slice(-2)} ~ {new Date(project.endDate).getFullYear()}-{("0" + (new Date(project.endDate).getMonth() + 1)).slice(-2)}
+              </li>
             ))}
           </ul>
         );
-      case 'SKILLS AND TECHNIQUES':
+      case 'Skills and Techniques':
         return (
           <div>
             {personalData.skillsAndTechniques.skillCategories.map((category) => (
@@ -75,19 +91,25 @@ function App() {
             ))}
           </div>
         );
-      case 'AWARDS & ACHIEVEMENTS':
+      case 'Awards & Achievements':
         return (
           <ul>
             {personalData.awardsAchievements.map((award) => (
-              <li key={award.id}>{award.name} ({award.description})</li>
+              <li key={award.id}>
+                {award.name} ({award.description})<br />
+                Date Received: {new Date(award.dateReceived).getFullYear()}-{("0" + (new Date(award.dateReceived).getMonth() + 1)).slice(-2)}
+              </li>
             ))}
           </ul>
         );
-      case 'Certification':
+      case 'Certifications':
         return (
           <ul>
             {personalData.certifications.map((certification) => (
-              <li key={certification.id}>{certification.name}</li>
+              <li key={certification.id}>{certification.name}<br />
+              Description: {certification.description}<br />
+              Date: {new Date(certification.dateReceived).getFullYear()}-{("0" + (new Date(certification.dateReceived).getMonth() + 1)).slice(-2)}
+              </li>
             ))}
           </ul>
         );
@@ -109,9 +131,9 @@ function App() {
               'Education',
               'Professional Affiliation',
               'Projects',
-              'SKILLS AND TECHNIQUES',
-              'AWARDS & ACHIEVEMENTS',
-              'Certification',
+              'Skills and Techniques',
+              'Awards & Achievements',
+              'Certifications',
             ].map((section) => (
               <button
                 key={section}
@@ -124,7 +146,7 @@ function App() {
           </div>
           <div className="right-panel">
             <section>
-              <h2>{selectedSection}</h2>
+              {/* <h2>{selectedSection}</h2> */}
               {renderSection()}
             </section>
           </div>
