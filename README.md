@@ -6,7 +6,7 @@ A personal portfolio web page project.
 
 The technologies and versions used in this project are as follows:
 
-- Database: MariaDB (version 10.9.3)
+- Database: MariaDB (version 10.10.3)
 - Backend: Spring Boot (version 2.7.11)
   - Build Tool: Gradle (Groovy)
   - Packaging: JAR
