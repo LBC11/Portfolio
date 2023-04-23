@@ -31,7 +31,9 @@ The folder structure for running the project is as follows:
 
 ### 2. Create Database:
 
-- Apply the portfolio_backup.sql file to create a database named 'portfolio' in the MariaDB.
+  1. Connect to MySQL client.
+  2. Execute the command "CREATE DATABASE portfolio;".
+  3. Run "SOURCE {location of portfolio_backup.sql file};" command.
 
 ### 3. Check Java 11 Installation:
 
@@ -40,16 +42,25 @@ The folder structure for running the project is as follows:
 ### 4. Check Gradle Installation:
 
 - If Gradle is already installed, proceed to the next step.
-- If Gradle is not installed, download and install Gradle from https://gradle.org/releases/.
-### 5. Configure MariaDB settings in portfolio-spring/src/main/resources/application.properties:
+1. Download Gradle: Visit the Gradle releases page at https://gradle.org/releases/ and download the latest version of Gradle. You can choose between the Binary-only and Complete versions. The Binary-only version is sufficient for basic use, while the Complete version includes additional examples and documentation.
+2. Extract the archive: Extract the downloaded file to an appropriate location, such as C:\Gradle. Remember this folder, as it will be your Gradle home directory.
+3. Set environment variables: You need to add Gradle to your system path and set the GRADLE_HOME environment variable. To do this, follow these steps:
+  - Open 'System' from the Control Panel, then click on 'Advanced system settings'.
+  - Click the 'Environment Variables' button.
+  - In the 'System variables' section, click 'New' to create a new system variable. Set the variable name as GRADLE_HOME and the variable value to the path of the Gradle folder you extracted earlier (e.g., C:\Gradle\gradle-7.3.3).
+  d. Locate and select the 'Path' system variable, then click 'Edit'. Add a new entry with %GRADLE_HOME%\bin.
+4. Verify the installation: To verify the installation, open a command prompt and type gradle -v or gradle --version. If installed correctly, you should see the Gradle version information displayed.
+
+### 5. Configure MariaDB connect settings in portfolio-spring/src/main/resources/application.properties:
 
 - spring.datasource.url=jdbc:mariadb://localhost:{port number}/portfolio
 - spring.datasource.username={user name}
 - spring.datasource.password={user password}
 ### 6. Run the Spring Boot Application:
 
-1. Open Power shell and navigate to the directory containing the Spring Boot application.
-2. Run the gradlew bootRun command to start the Spring Boot application.
+  1. In the terminal, navigate to the root directory of the project(spring).
+  2. Execute "gradlew clean build".
+  3. Run the JAR file generated in the build/libs (Gradle) directory using the following command: "java -jar {file_name}.jar".
 
 ### 7. Check Node.js Installation:
 
@@ -75,7 +86,7 @@ npm install react react-dom react-chartjs-2 chart.js chartjs-adapter-date-fns ax
 
 ### 9. Run React
 
-- In the terminal, navigate to the portfolio-react folder and run through the "npm start".
+- In the terminal, navigate to the portfolio-react folder and run the project(React) through the "npm start".
 - If everything is set up correctly, the portfolio web page will be accessible at http://localhost:3000 in your web browser.
 
 ![image](https://user-images.githubusercontent.com/107410759/233843051-68ddc39c-e7cd-4315-83b9-50c3a43c2b32.png)
