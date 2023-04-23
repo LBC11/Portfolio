@@ -17,8 +17,8 @@
   flex-direction: row;
   flex-grow: 1;
   padding: 1rem;
-  max-height: 610px; /* 추가된 부분 */
-  overflow-y: auto; /* 추가된 부분 */
+  max-height: 610px;
+  overflow-y: auto;
 }
 
 .left-panel {
@@ -70,4 +70,13 @@ footer {
   background-color: #003A70;
   padding: 1rem 0;
   margin-top: auto;
+}
+
+.section-item {
+  margin-bottom: 1rem;
+}
+
+.description-item {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
