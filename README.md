@@ -80,3 +80,5 @@ npm install react react-dom react-chartjs-2 chart.js chartjs-adapter-date-fns ax
 
 ![image](https://user-images.githubusercontent.com/107410759/233843051-68ddc39c-e7cd-4315-83b9-50c3a43c2b32.png)
 
+## REST API Documentation with Swagger
+This project utilizes Swagger for REST API documentation. Once the Spring server is up and running, you can access the REST API documentation at http://localhost:8080/swagger-ui/index.html.
