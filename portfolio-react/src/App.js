@@ -197,21 +197,21 @@ function App() {
                 ))}
 
                 {/* Add images at the end of the project */}
-                {project.id === 5 && (
+                {project.id === 1 && (
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem' }}>
                     <img src={`${process.env.PUBLIC_URL}/todoMap1.png`} alt="Todo Map 1" style={{ maxWidth: '49%' }} />
                     <img src={`${process.env.PUBLIC_URL}/todoMap2.png`} alt="Todo Map 2" style={{ maxWidth: '49%' }} />
                   </div>
                 )}
 
-                {project.id === 6 && (
+                {project.id === 2 && (
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem' }}>
                     <img src={`${process.env.PUBLIC_URL}/itmWiki1.png`} alt="ITM Wiki 1" style={{ maxWidth: '49%' }} />
                     <img src={`${process.env.PUBLIC_URL}/itmWiki2.png`} alt="ITM Wiki 2" style={{ maxWidth: '49%' }} />
                   </div>
                 )}
 
-                {project.id === 7 && (
+                {project.id === 3 && (
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem' }}>
                     <img src={`${process.env.PUBLIC_URL}/verifyNegativityBias1.png`} alt="Verify Negativity Bias 1" style={{ maxWidth: '49%' }} />
                     <img src={`${process.env.PUBLIC_URL}/verifyNegativityBias2.png`} alt="Verify Negativity Bias 2" style={{ maxWidth: '49%' }} />
