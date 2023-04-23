@@ -45,9 +45,9 @@ The folder structure for running the project is as follows:
 1. Download Gradle: Visit the Gradle releases page at https://gradle.org/releases/ and download the latest version of Gradle. You can choose between the Binary-only and Complete versions. The Binary-only version is sufficient for basic use, while the Complete version includes additional examples and documentation.
 2. Extract the archive: Extract the downloaded file to an appropriate location, such as C:\Gradle. Remember this folder, as it will be your Gradle home directory.
 3. Set environment variables: You need to add Gradle to your system path and set the GRADLE_HOME environment variable. To do this, follow these steps:
-  - Open 'System' from the Control Panel, then click on 'Advanced system settings'.
-  - Click the 'Environment Variables' button.
-  - In the 'System variables' section, click 'New' to create a new system variable. Set the variable name as GRADLE_HOME and the variable value to the path of the Gradle folder you extracted earlier (e.g., C:\Gradle\gradle-7.3.3).
+    - Open 'System' from the Control Panel, then click on 'Advanced system settings'.
+    - Click the 'Environment Variables' button.
+    - In the 'System variables' section, click 'New' to create a new system variable. Set the variable name as GRADLE_HOME and the variable value to the path of the Gradle folder you extracted earlier (e.g., C:\Gradle\gradle-7.3.3).
   d. Locate and select the 'Path' system variable, then click 'Edit'. Add a new entry with %GRADLE_HOME%\bin.
 4. Verify the installation: To verify the installation, open a command prompt and type gradle -v or gradle --version. If installed correctly, you should see the Gradle version information displayed.
 
