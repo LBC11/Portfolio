@@ -89,7 +89,7 @@ npm install react react-dom react-chartjs-2 chart.js chartjs-adapter-date-fns ax
 - In the terminal, navigate to the portfolio-react folder and run the project(React) through the "npm start".
 - If everything is set up correctly, the portfolio web page will be accessible at http://localhost:3000 in your web browser.
 
-![image](https://user-images.githubusercontent.com/107410759/233843051-68ddc39c-e7cd-4315-83b9-50c3a43c2b32.png)
+![image](https://github.com/LBC11/Portfolio/assets/107410759/23f72b15-9ed1-4470-8277-7cb77e25bc02)
 
 ## REST API Documentation with Swagger
 This project utilizes Swagger for REST API documentation. Once the Spring server is up and running, you can access the REST API documentation at http://localhost:8080/swagger-ui/index.html.
